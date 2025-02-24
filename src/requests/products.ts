@@ -13,7 +13,6 @@ export const getProductsRequest = async ({
       }&limit=${limit}&skip=${skip}`
     );
 
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
