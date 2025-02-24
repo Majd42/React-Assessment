@@ -56,11 +56,9 @@ const UsersPage = () => {
       })
     );
   }, [selectQuery, pageSize, activePage]);
-
   useEffect(() => {
     setActivePage(1);
-  }, [selectQuery]);
-
+  }, [selectQuery, pageSize]);
   const filteredUsers = users.filter((user) =>
     (
       ["firstName", "email", "gender", "eyeColor"] as (keyof typeof user)[]

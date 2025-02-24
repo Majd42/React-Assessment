@@ -54,7 +54,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     setActivePage(1);
-  }, [selectQuery]);
+  }, [selectQuery, pageSize]);
 
   const filteredProducts = products.filter((product) =>
     (["title", "category"] as (keyof typeof product)[]).some((key) =>
