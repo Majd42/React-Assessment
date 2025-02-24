@@ -10,6 +10,7 @@ type TableProps = {
   activePage: number;
   setActivePage: React.Dispatch<React.SetStateAction<number>>;
   pageSize: number;
+  fields: string[];
 };
 
 const Table = ({
@@ -20,6 +21,7 @@ const Table = ({
   activePage,
   setActivePage,
   pageSize,
+  fields,
 }: TableProps) => {
   const numberOfPages = Math.floor(totalProducts / pageSize);
 
@@ -47,14 +49,12 @@ const Table = ({
               key={rowIndex}
               className="hover:bg-as-gray/80 transition-colors duration-500"
             >
-              {headers.map((header, colIndex) => (
+              {fields.map((field, colIndex) => (
                 <td
                   key={`${rowIndex}-${colIndex}`}
                   className="border border-as-gray p-2.5"
                 >
-                  {header.toLowerCase() === "discount"
-                    ? row["discountPercentage"]
-                    : row[header.toLowerCase()]}
+                  {row[field]}
                 </td>
               ))}
             </tr>

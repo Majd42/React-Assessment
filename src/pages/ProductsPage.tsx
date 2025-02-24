@@ -23,6 +23,16 @@ const ProductsPage = () => {
     "RATING",
     "STOCK",
   ];
+  const fields = [
+    "title",
+    "description",
+    "category",
+    "brand",
+    "price",
+    "discountPercentage",
+    "rating",
+    "stock",
+  ];
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectQuery, setSelectQuery] = useState("");
@@ -68,6 +78,7 @@ const ProductsPage = () => {
         setActivePage={setActivePage}
         activePage={activePage}
         pageSize={pageSize}
+        fields={fields}
       />
     </div>
   );

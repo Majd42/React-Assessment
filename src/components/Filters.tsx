@@ -6,6 +6,7 @@ type PropTypes = {
   setSelectQuery: React.Dispatch<React.SetStateAction<string>>;
   setPageSize: React.Dispatch<React.SetStateAction<number>>;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  setQueryName?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Filters = ({
@@ -13,6 +14,7 @@ const Filters = ({
   setSelectQuery,
   setPageSize,
   setSearchQuery,
+  setQueryName,
 }: PropTypes) => {
   const [activateSearch, setActivateSearch] = useState(false);
 
@@ -57,6 +59,7 @@ const Filters = ({
                 if (e.target.value === "all") {
                   return setSelectQuery("");
                 }
+                if (setQueryName) setQueryName(filter);
                 setSelectQuery(e.target.value);
               }}
             >
