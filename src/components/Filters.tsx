@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchImg from "../assets/search.png";
+import { camelToTitleCase } from "../lib/utility";
 
 type PropTypes = {
   filters: Record<string, string[]>;
@@ -53,7 +54,7 @@ const Filters = ({
       <div className="px-3 first:pl-0 last:pr-0 flex gap-3.5 items-center">
         {Object.keys(filters).map((filter) => (
           <div key={`filter-${filter}`} className="flex items-center gap-1">
-            <span>{filter.charAt(0).toUpperCase() + filter.slice(1)}</span>
+            <span>{camelToTitleCase(filter)}</span>
             <select
               onChange={(e) => {
                 if (e.target.value === "all") {

@@ -25,6 +25,13 @@ const Table = ({
 }: TableProps) => {
   const numberOfPages = Math.floor(totalProducts / pageSize);
 
+  if (data.length <= 0 && !loading)
+    return (
+      <div className="flex justify-center items-center">
+        <p className="text-lg font-bold italic mt-20"> No Results Found</p>
+      </div>
+    );
+
   if (loading)
     return (
       <div className="flex justify-center items-center">
