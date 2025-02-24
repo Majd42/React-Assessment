@@ -11,6 +11,7 @@ const initialState: productsStateTypes = {
   products: [],
   errorProducts: false,
   loadingProducts: false,
+  total: 0,
 };
 
 const productsSlice = createSlice({
@@ -27,6 +28,7 @@ const productsSlice = createSlice({
       (state.loadingProducts = false),
         (state.products = action.payload.products),
         (state.errorProducts = false);
+      state.total = action.payload.total;
     });
 
     builder.addCase(getProducts.rejected, (state) => {

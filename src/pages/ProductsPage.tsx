@@ -12,7 +12,7 @@ const ProductsPage = () => {
   const loadingProducts = useSelector(
     (state) => state.products.loadingProducts
   );
-
+  const total = useSelector((state) => state.products.total);
   const headers = [
     "TITLE",
     "DESCRIPTION",
@@ -27,15 +27,25 @@ const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectQuery, setSelectQuery] = useState("");
   const [pageSize, setPageSize] = useState(5);
+  const [activePage, setActivePage] = useState(1);
   const filters = {
     category: ["laptop"],
   };
 
   useEffect(() => {
     dispatch(
-      getProducts({ limit: pageSize, selectQuery: selectQuery, skip: 0 })
+      getProducts({
+        limit: pageSize,
+        selectQuery: selectQuery,
+        skip: activePage * pageSize - pageSize,
+      })
     );
-  }, [selectQuery, pageSize]);
+  }, [selectQuery, pageSize, activePage]);
+
+  useEffect(() => {
+    setActivePage(1);
+  }, [selectQuery]);
+
   const filteredProducts = products.filter((product) =>
     (["title", "category"] as (keyof typeof product)[]).some((key) =>
       product[key]?.toString().toLowerCase().includes(searchQuery.toLowerCase())
@@ -54,6 +64,10 @@ const ProductsPage = () => {
         data={filteredProducts}
         loading={loadingProducts}
         headers={headers}
+        totalProducts={total}
+        setActivePage={setActivePage}
+        activePage={activePage}
+        pageSize={pageSize}
       />
     </div>
   );

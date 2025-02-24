@@ -2,6 +2,7 @@ export type productsStateTypes = {
   products: Product[];
   loadingProducts: boolean;
   errorProducts: boolean;
+  total: number;
 };
 
 export type Product = {
