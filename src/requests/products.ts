@@ -1,8 +1,17 @@
 import axios from "axios";
+import { GetProductsProps } from "../types";
 
-export const getProductsRequest = async () => {
+export const getProductsRequest = async ({
+  limit,
+  skip,
+  selectQuery,
+}: GetProductsProps) => {
   try {
-    const response = await axios.get("https://dummyjson.com/products");
+    const response = await axios.get(
+      `https://dummyjson.com/products${selectQuery ? "/search" : ""}?${
+        selectQuery ? "q=" + selectQuery : ""
+      }&limit=${limit}&skip=${skip}`
+    );
 
     return response.data;
   } catch (error) {

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { productsStateTypes } from "../../types";
+import { GetProductsProps, productsStateTypes } from "../../types";
 import { getProductsRequest } from "../../requests/products";
 
-const getProducts = createAsyncThunk(
+export const getProducts = createAsyncThunk(
   "/products/getProudcts",
-  getProductsRequest
+  (porps: GetProductsProps) => getProductsRequest(porps)
 );
 
 const initialState: productsStateTypes = {

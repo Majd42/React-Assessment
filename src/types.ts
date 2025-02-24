@@ -43,3 +43,9 @@ export type Product = {
   thumbnail: string;
   images: string[];
 };
+
+export type GetProductsProps = {
+  limit: number;
+  skip: number;
+  selectQuery: string;
+};
